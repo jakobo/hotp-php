@@ -15,9 +15,9 @@ class HOTP {
      * @return HOTPResult a HOTP Result which can be truncated or output
      */
     public static function generateByCounter($key, $counter) {
-        //the counter value can be more than one byte long,
-        // so we need to go multiple times
-        $cur_counter = array(0,0,0,0,0,0,0,0);
+        // the counter value can be more than one byte long,
+        // so we need to pack it down properly.
+        $cur_counter = array(0, 0, 0, 0, 0, 0, 0, 0);
         for($i = 7; $i >= 0; $i--) {
             $cur_counter[$i] = pack ('C*', $counter);
             $counter = $counter >> 8;
@@ -26,12 +26,12 @@ class HOTP {
         $bin_counter = implode($cur_counter);
         
         // Pad to 8 chars
-        if (strlen ($bin_counter) < 8) {
+        if (strlen($bin_counter) < 8) {
             $bin_counter = str_repeat (chr(0), 8 - strlen ($bin_counter)) . $bin_counter;
         }
 
         // HMAC
-        $hash = hash_hmac ('sha1', $bin_counter, $key);
+        $hash = hash_hmac('sha1', $bin_counter, $key);
         
         return new HOTPResult($hash);
     }
@@ -172,6 +172,3 @@ class HOTPResult {
     }
 
 }
-
-
-
