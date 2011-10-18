@@ -87,12 +87,7 @@ class HOTP {
      * @return int the current time
      */
     public static function getTime() {
-        $tz = date_default_timezone_get();
-        date_default_timezone_set("UTC");
-        $timestamp = time();
-        date_default_timezone_set($tz);
-        
-        return $timestamp;
+        return time(); // PHP's time is always UTC
     }
 }
 
