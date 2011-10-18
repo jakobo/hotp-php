@@ -5,6 +5,7 @@
  * http://tools.ietf.org/html/draft-mraihi-oath-hmac-otp-04#appendix-D
  * @author Jakob Heuser (firstname)@felocity.com
  * @copyright 2011
+ * @license BSD
  * @version 1.0
  */
 class HOTP {
@@ -62,9 +63,9 @@ class HOTP {
      * @param int $min the minimum window to accept before $timestamp
      * @param int $max the maximum window to accept after $timestamp
      * @param int $timestamp a timestamp to calculate for, defaults to time()
-     * @return HOTPResult a HOTP Result which can be truncated or output
+     * @return array of HOTPResult
      */
-    public static function generateByTimeWindow($key, $window, $min, $max, $timestamp = false) {
+    public static function generateByTimeWindow($key, $window, $min = -1, $max = 1, $timestamp = false) {
         if (!$timestamp && $timestamp !== 0) {
             $timestamp = HOTP::getTime();
         }
@@ -72,6 +73,7 @@ class HOTP {
         $counter = intval($timestamp / $window);
         $window = range($min, $max);
         
+        $out = array();
         for ($i = 0; $i < count($window); $i++) {
             $shift_counter = $window[$i];
             $out[$shift_counter] = HOTP::generateByCounter($key, $counter + $shift_counter);
@@ -87,12 +89,7 @@ class HOTP {
      * @return int the current time
      */
     public static function getTime() {
-        $tz = date_default_timezone_get();
-        date_default_timezone_set("UTC");
-        $timestamp = time();
-        date_default_timezone_set($tz);
-        
-        return $timestamp;
+        return time(); // PHP's time is always UTC
     }
 }
 
