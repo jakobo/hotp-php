@@ -5,6 +5,7 @@
  * http://tools.ietf.org/html/draft-mraihi-oath-hmac-otp-04#appendix-D
  * @author Jakob Heuser (firstname)@felocity.com
  * @copyright 2011
+ * @license BSD
  * @version 1.0
  */
 class HOTP {
