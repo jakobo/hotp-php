@@ -110,27 +110,6 @@ class HOTPResult {
     public function __construct($value) {
         // store raw
         $this->hash = $value;
-        
-        // store calculate decimal
-        $hmac_result = array();
-        
-        // Convert to decimal
-        foreach(str_split($this->hash,2) as $hex)
-        {
-            $hmac_result[] = hexdec($hex);
-        }
-        
-        $offset = $hmac_result[19] & 0xf;
-        
-        $this->decimal = (
-            (($hmac_result[$offset+0] & 0x7f) << 24 ) |
-            (($hmac_result[$offset+1] & 0xff) << 16 ) |
-            (($hmac_result[$offset+2] & 0xff) << 8 ) |
-            ($hmac_result[$offset+3] & 0xff)
-        );
-        
-        // calculate hex
-        $this->hex = dechex($this->decimal);
     }
     
     /**
@@ -146,6 +125,10 @@ class HOTPResult {
      * @return string
      */
     public function toHex() {
+        if( !$this->hex ) 
+        {
+            $this->hex = dechex($this->toDec());
+        }
         return $this->hex;
     }
     
@@ -154,6 +137,26 @@ class HOTPResult {
      * @return int
      */
     public function toDec() {
+        if( !$this->decimal ) 
+        {
+            // store calculate decimal
+            $hmac_result = array();
+        
+            // Convert to decimal
+            foreach(str_split($this->hash,2) as $hex)
+            {
+               $hmac_result[] = hexdec($hex);
+            }
+        
+            $offset = $hmac_result[19] & 0xf;
+        
+            $this->decimal = (
+                (($hmac_result[$offset+0] & 0x7f) << 24 ) |
+                (($hmac_result[$offset+1] & 0xff) << 16 ) |
+                (($hmac_result[$offset+2] & 0xff) << 8 ) |
+                ($hmac_result[$offset+3] & 0xff)
+            );
+        }
         return $this->decimal;
     }
     
