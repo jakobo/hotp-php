@@ -57,7 +57,7 @@ class HOTPResult {
             $hmac_result = array();
 
             // Convert to decimal
-            foreach( str_split( $this->hash,2 ) as $hex )
+            foreach ( str_split( $this->hash,2 ) as $hex )
             {
                $hmac_result[] = hexdec($hex);
             }

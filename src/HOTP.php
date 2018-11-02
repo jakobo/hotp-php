@@ -22,7 +22,7 @@ class HOTP {
         // the counter value can be more than one byte long,
         // so we need to pack it down properly.
         $cur_counter = array( 0, 0, 0, 0, 0, 0, 0, 0 );
-        for( $i = 7; $i >= 0; $i-- ) {
+        for ( $i = 7; $i >= 0; $i-- ) {
             $cur_counter[$i] = pack('C*', $counter );
             $counter = $counter >> 8;
         }
