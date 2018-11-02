@@ -1,0 +1,19 @@
+{
+    "name": "jakobo/hotp-php",
+    "description": "HOTP simplifies One Time Password systems for PHP Authentication",
+    "license": "BSD-3-Clause",
+    "authors" : [
+        {
+            "name": "Jakob Heuser",
+            "email": "jakob@felocity.org"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "hotp.php"
+        ]
+    },
+    "require": {
+        "php": "^5.3.3 || ^7.0"
+    }
+}
