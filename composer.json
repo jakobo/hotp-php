@@ -11,7 +11,7 @@
     "autoload": {
         "psr-4": {
             "jakobo\\HOTP\\": "src/"
-        ]
+        }
     },
     "require": {
         "php": "^5.3.3 || ^7.0"

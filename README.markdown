@@ -32,5 +32,6 @@ $result->toString();
 $result->toHex();
 
 $result->doDec();
+
 $result->toHotp( $length ); // how many digits in your OTP?
 ```
