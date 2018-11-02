@@ -9,8 +9,8 @@
         }
     ],
     "autoload": {
-        "files": [
-            "hotp.php"
+        "psr-4": {
+            "jakobo\\HOTP\\": "src/"
         ]
     },
     "require": {

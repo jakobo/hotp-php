@@ -3,7 +3,9 @@
 /*
 HOTP Example File
 */
-require_once 'hotp.php';
+require_once 'src/hotp.php';
+
+use jakobo\HOTP\HOTP;
 
 $key = '12345678901234567890';
 
@@ -33,37 +35,37 @@ $table = array(
             'dec'   => '1726969429',
             'hotp'  => '969429',
             ),
-        4 => array(            
+        4 => array(
             'HMAC'  => 'a904c900a64b35909874b33e61c5938a8e15ed1c',
             'hex'   => '61c5938a',
             'dec'   => '1640338314',
             'hotp'  => '338314',
             ),
-        5 => array(             
+        5 => array(
             'HMAC'  => 'a37e783d7b7233c083d4f62926c7a25f238d0316',
             'hex'   => '33c083d4',
             'dec'   => '868254676',
             'hotp'  => '254676',
             ),
-        6 => array(            
+        6 => array(
             'HMAC'  => 'bc9cd28561042c83f219324d3c607256c03272ae',
             'hex'   => '7256c032',
             'dec'   => '1918287922',
             'hotp'  => '287922',
             ),
-        7 => array(              
+        7 => array(
             'HMAC'  => 'a4fb960c0bc06e1eabb804e5b397cdc4b45596fa',
             'hex'   => '4e5b397',
             'dec'   => '82162583',
             'hotp'  => '162583',
             ),
-        8 => array(             
+        8 => array(
             'HMAC'  => '1b3c89f65e6c9e883012052823443f048b4332db',
             'hex'   => '2823443f',
             'dec'   => '673399871',
             'hotp'  => '399871',
             ),
-        9 => array(             
+        9 => array(
             'HMAC'  => '1637409809a679dc698207310c8c7fc07290d9e5',
             'hex'   => '2679dc69',
             'dec'   => '645520489',
@@ -99,7 +101,7 @@ TEST VECTOR VERIFICATION
 HOTP Tests:
 
 DOCBLOCK;
-  
+
 echo "Count Method Value                                           Pass/Fail\n";
 echo "----------------------------------------------------------------------\n";
 
