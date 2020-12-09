@@ -14,7 +14,7 @@
         }
     },
     "require": {
-        "php": "^5.4.0 || ^7.0"
+        "php": "^5.4.0 || >=7.0"
     },
     "require-dev": {
         "php-parallel-lint/php-console-highlighter": "0.5",
