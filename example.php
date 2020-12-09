@@ -1,9 +1,9 @@
 <?php
 
-/*
-HOTP Example File
-*/
-require_once 'src/hotp.php';
+/**
+ * HOTP Example File
+ */
+require_once 'src/HOTP.php';
 
 use jakobo\HOTP\HOTP;
 
@@ -152,7 +152,7 @@ foreach ( $table['TOTP'] as $seed => $results ) {
         echo '   ';
         echo str_pad( $calc, 47, ' ', STR_PAD_RIGHT );
         echo '  ';
-        $method = 'to' . ( ucfirst( str_replace('totp', 'hotp', $type ) ) );
+        $method = 'to' . ( ucfirst( str_replace( 'totp', 'hotp', $type ) ) );
         echo str_pad( ( $calc == $totp->$method( 8 ) ) ? '[OK]' : '[FAIL]', 9, ' ', STR_PAD_LEFT );
         echo "\n";
     }
