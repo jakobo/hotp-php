@@ -24,7 +24,7 @@ $result = HOTP::generateByTime( $key, $window ); // time based within a "window"
 $result = HOTP::generateByTimeWindow( $key, $window, $min, $max ); // same as generateByTime, but for $min windows before and $max windows after
 ```
 
-with $result, you can do all sorts of neat things...
+with `$result`, you can do all sorts of neat things...
 
 ```php
 $result->toString();
