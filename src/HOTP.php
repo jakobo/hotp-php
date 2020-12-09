@@ -21,9 +21,9 @@ class HOTP {
     public static function generateByCounter( $key, $counter ) {
         // the counter value can be more than one byte long,
         // so we need to pack it down properly.
-        $cur_counter = array( 0, 0, 0, 0, 0, 0, 0, 0 );
+        $cur_counter = [ 0, 0, 0, 0, 0, 0, 0, 0 ];
         for ( $i = 7; $i >= 0; $i-- ) {
-            $cur_counter[$i] = pack('C*', $counter );
+            $cur_counter[$i] = pack( 'C*', $counter );
             $counter = $counter >> 8;
         }
 
@@ -35,7 +35,7 @@ class HOTP {
         }
 
         // HMAC
-        $hash = hash_hmac('sha1', $bin_counter, $key );
+        $hash = hash_hmac( 'sha1', $bin_counter, $key );
 
         return new HOTPResult( $hash );
     }
@@ -73,7 +73,7 @@ class HOTP {
             $timestamp = self::getTime();
         }
 
-        $counter = intval($timestamp / $window );
+        $counter = intval( $timestamp / $window );
         $window = range( $min, $max );
 
         $out = array();
