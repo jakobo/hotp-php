@@ -101,6 +101,10 @@ class HOTPTest extends TestCase {
 
     /**
      * @covers \jakobo\HOTP\HOTP::generateByCounter
+     * @covers \jakobo\HOTP\HOTPResult::toString
+     * @covers \jakobo\HOTP\HOTPResult::toHex
+     * @covers \jakobo\HOTP\HOTPResult::toDec
+     * @covers \jakobo\HOTP\HOTPResult::toHOTP
      * @dataProvider provideHOTP
      */
     public function testHOTP( $seed, $result ): void {
@@ -139,6 +143,7 @@ class HOTPTest extends TestCase {
 
     /**
      * @covers \jakobo\HOTP\HOTP::generateByTime
+     * @covers \jakobo\HOTP\HOTPResult::toHOTP
      * @dataProvider provideTOTP
      */
     public function testTOTP( $seed, $result ): void {
