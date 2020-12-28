@@ -29,7 +29,7 @@ class HOTPResult {
      * Returns the string version of the HOTP
      * @return string
      */
-    public function toString() {
+    public function toString(): string {
         return $this->hash;
     }
 
@@ -37,7 +37,7 @@ class HOTPResult {
      * Returns the hex version of the HOTP
      * @return string
      */
-    public function toHex() {
+    public function toHex(): string {
         if( !$this->hex ) {
             $this->hex = dechex( $this->toDec() );
         }
@@ -48,7 +48,7 @@ class HOTPResult {
      * Returns the decimal version of the HOTP
      * @return int
      */
-    public function toDec() {
+    public function toDec(): int {
         if( !$this->decimal ) {
             // store calculate decimal
             $hmac_result = [];
@@ -75,7 +75,7 @@ class HOTPResult {
      * @param int $length the length of the HOTP to return
      * @return string
      */
-    public function toHOTP( $length ) {
+    public function toHOTP( $length ): string {
         $str = str_pad( $this->toDec(), $length, "0", STR_PAD_LEFT );
         return substr( $str, ( -1 * $length ) );
     }
