@@ -26,7 +26,7 @@
         "test": [
             "parallel-lint . --exclude vendor",
             "covers-validator",
-            "phpunit"
+            "phpunit --coverage-text"
         ],
         "cover": "phpunit --coverage-html coverage"
     }
