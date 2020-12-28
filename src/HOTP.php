@@ -93,6 +93,7 @@ class HOTP {
      * Ensures we are operating in UTC for the entire framework
      * Restores the timezone on exit.
      * @return int the current time
+     * @codeCoverageIgnore
      */
     public static function getTime(): int {
         return time(); // PHP's time is always UTC
