@@ -7,7 +7,7 @@ namespace jakobo\HOTP;
  * Based on the work of OAuth, and the sample implementation of HMAC OTP
  * http://tools.ietf.org/html/draft-mraihi-oath-hmac-otp-04#appendix-D
  * @author Jakob Heuser (firstname)@felocity.com
- * @copyright 2011
+ * @copyright 2011-2020
  * @license BSD-3-Clause
  * @version 1.0
  */
@@ -49,7 +49,7 @@ class HOTP {
      */
     public static function generateByTime( $key, $window, $timestamp = false ) {
         if ( !$timestamp && $timestamp !== 0 ) {
-            $timestamp = HOTP::getTime();
+            $timestamp = self::getTime();
         }
 
         $counter = intval( $timestamp / $window) ;
@@ -76,7 +76,7 @@ class HOTP {
         $counter = intval( $timestamp / $window );
         $window = range( $min, $max );
 
-        $out = array();
+        $out = [];
         $count = count( $window );
         for ( $i = 0; $i < $count; $i++ ) {
             $shift_counter = $counter + $window[$i];

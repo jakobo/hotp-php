@@ -7,13 +7,12 @@ namespace jakobo\HOTP;
  * Supported formats include hex, decimal, string, and HOTP
 
  * @author Jakob Heuser (firstname)@felocity.com
- * @copyright 2011
+ * @copyright 2011-2020
  * @license BSD-3-Clause
  * @version 1.0
  */
 class HOTPResult {
     protected $hash;
-    protected $binary;
     protected $decimal;
     protected $hex;
 
@@ -39,8 +38,7 @@ class HOTPResult {
      * @return string
      */
     public function toHex() {
-        if( !$this->hex )
-        {
+        if( !$this->hex ) {
             $this->hex = dechex( $this->toDec() );
         }
         return $this->hex;
@@ -51,14 +49,12 @@ class HOTPResult {
      * @return int
      */
     public function toDec() {
-        if( !$this->decimal )
-        {
+        if( !$this->decimal ) {
             // store calculate decimal
-            $hmac_result = array();
+            $hmac_result = [];
 
             // Convert to decimal
-            foreach ( str_split( $this->hash,2 ) as $hex )
-            {
+            foreach ( str_split( $this->hash,2 ) as $hex ) {
                $hmac_result[] = hexdec($hex);
             }
 

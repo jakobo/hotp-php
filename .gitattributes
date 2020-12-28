@@ -3,3 +3,5 @@
 .gitignore export-ignore
 .github export-ignore
 composer.json export-ignore
+example.php export-ignore
+phpunit.xml export-ignore
