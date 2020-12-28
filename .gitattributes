@@ -1,7 +1,8 @@
 .editorconfig export-ignore
 .gitattributes export-ignore
 .gitignore export-ignore
-.github export-ignore
+.github/ export-ignore
 composer.json export-ignore
 example.php export-ignore
 phpunit.xml export-ignore
+tests/ export-ignore
