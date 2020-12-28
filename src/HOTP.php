@@ -52,7 +52,9 @@ class HOTP {
      */
     public static function generateByTime( string $key, int $window, $timestamp = false ): HOTPResult {
         if ( !$timestamp && $timestamp !== 0 ) {
+            // @codeCoverageIgnoreStart
             $timestamp = self::getTime();
+            // @codeCoverageIgnoreEnd
         }
 
         $counter = intval( $timestamp / $window) ;
@@ -73,7 +75,9 @@ class HOTP {
      */
     public static function generateByTimeWindow( string $key, int $window, int $min = -1, int $max = 1, $timestamp = false ): array {
         if ( !$timestamp && $timestamp !== 0 ) {
+            // @codeCoverageIgnoreStart
             $timestamp = self::getTime();
+            // @codeCoverageIgnoreEnd
         }
 
         $counter = intval( $timestamp / $window );
