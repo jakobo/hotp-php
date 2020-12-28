@@ -80,9 +80,8 @@ class HOTP {
         $window = range( $min, $max );
 
         $out = [];
-        $count = count( $window );
-        for ( $i = 0; $i < $count; $i++ ) {
-            $shift_counter = $counter + $window[$i];
+        foreach ( $window as $value ) {
+            $shift_counter = $counter + $value;
             $out[$shift_counter] = self::generateByCounter( $key, $shift_counter );
         }
 
