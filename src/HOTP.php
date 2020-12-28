@@ -100,6 +100,7 @@ class HOTP {
      * @codeCoverageIgnore
      */
     public static function getTime(): int {
-        return time(); // PHP's time is always UTC
+        // PHP's time is always UTC
+        return time();
     }
 }
