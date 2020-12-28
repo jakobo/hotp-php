@@ -19,6 +19,7 @@ class HOTPResult {
     /**
      * Build an HOTP Result
      * @param string $value the value to construct with
+	 * @codeCoverageIgnore
      */
     public function __construct( string $value ) {
         // store raw
