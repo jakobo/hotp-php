@@ -18,7 +18,7 @@ class HOTP {
      * @param int $counter the number of attempts represented in this hashing
      * @return HOTPResult a HOTP Result which can be truncated or output
      */
-    public static function generateByCounter( $key, $counter ): HOTPResult {
+    public static function generateByCounter( string $key, int $counter ): HOTPResult {
         // the counter value can be more than one byte long,
         // so we need to pack it down properly.
         $cur_counter = [ 0, 0, 0, 0, 0, 0, 0, 0 ];
@@ -31,7 +31,10 @@ class HOTP {
 
         // Pad to 8 chars
         if ( strlen( $bin_counter ) < 8 ) {
-            $bin_counter = str_repeat( chr(0 ), 8 - strlen( $bin_counter ) ) . $bin_counter;
+            $bin_counter = str_repeat(
+                chr(0 ),
+                8 - strlen( $bin_counter )
+            ) . $bin_counter;
         }
 
         // HMAC
@@ -47,7 +50,7 @@ class HOTP {
      * @param int|false $timestamp a timestamp to calculate for, defaults to time()
      * @return HOTPResult a HOTP Result which can be truncated or output
      */
-    public static function generateByTime( $key, $window, $timestamp = false ): HOTPResult {
+    public static function generateByTime( string $key, int $window, $timestamp = false ): HOTPResult {
         if ( !$timestamp && $timestamp !== 0 ) {
             $timestamp = self::getTime();
         }
@@ -68,7 +71,7 @@ class HOTP {
      * @param int|false $timestamp a timestamp to calculate for, defaults to time()
      * @return array of HOTPResult
      */
-    public static function generateByTimeWindow( $key, $window, $min = -1, $max = 1, $timestamp = false ): array {
+    public static function generateByTimeWindow( string $key, int $window, int $min = -1, int $max = 1, $timestamp = false ): array {
         if ( !$timestamp && $timestamp !== 0 ) {
             $timestamp = self::getTime();
         }

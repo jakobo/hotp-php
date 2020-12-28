@@ -20,7 +20,7 @@ class HOTPResult {
      * Build an HOTP Result
      * @param string $value the value to construct with
      */
-    public function __construct( $value ) {
+    public function __construct( string $value ) {
         // store raw
         $this->hash = $value;
     }
@@ -75,7 +75,7 @@ class HOTPResult {
      * @param int $length the length of the HOTP to return
      * @return string
      */
-    public function toHOTP( $length ): string {
+    public function toHOTP( int $length ): string {
         $str = str_pad( $this->toDec(), $length, "0", STR_PAD_LEFT );
         return substr( $str, ( -1 * $length ) );
     }
