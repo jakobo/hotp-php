@@ -32,7 +32,7 @@ class HOTP {
         // Pad to 8 chars
         if ( strlen( $bin_counter ) < 8 ) {
             $bin_counter = str_repeat(
-                chr(0 ),
+                chr( 0 ),
                 8 - strlen( $bin_counter )
             ) . $bin_counter;
         }
