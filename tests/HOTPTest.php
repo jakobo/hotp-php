@@ -100,7 +100,11 @@ class HOTPTest extends TestCase {
     }
 
     /**
+     * @param $seed
+     * @param $result
+     *
      * @covers \jakobo\HOTP\HOTP::generateByCounter
+     * @covers \jakobo\HOTP\HOTPResult::__construct
      * @covers \jakobo\HOTP\HOTPResult::toString
      * @covers \jakobo\HOTP\HOTPResult::toHex
      * @covers \jakobo\HOTP\HOTPResult::toDec
@@ -142,7 +146,11 @@ class HOTPTest extends TestCase {
     }
 
     /**
+     * @param $seed
+     * @param $result
+     *
      * @covers \jakobo\HOTP\HOTP::generateByTime
+     * @covers \jakobo\HOTP\HOTPResult::__construct
      * @covers \jakobo\HOTP\HOTPResult::toHOTP
      * @dataProvider provideTOTP
      */
