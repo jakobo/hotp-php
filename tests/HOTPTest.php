@@ -183,7 +183,7 @@ class HOTPTest extends TestCase {
     /**
      * @param string $seed
      * @param string[] $result
-     * @covers \jakobo\HOTP\HOTP::generateByTime
+     * @covers \jakobo\HOTP\HOTP::generateByTimeWindow
      * @covers \jakobo\HOTP\HOTPResult::__construct
      * @covers \jakobo\HOTP\HOTPResult::toHOTP
      * @dataProvider provideGenerateByTimeWindow
