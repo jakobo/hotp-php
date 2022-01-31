@@ -11,36 +11,38 @@ namespace jakobo\HOTP;
  * @license BSD-3-Clause
  * @version 1.0
  */
-class HOTP {
+class HOTP
+{
     /**
      * Generate a HOTP key based on a counter value (event based HOTP)
      * @param string $key the key to use for hashing
      * @param int $counter the number of attempts represented in this hashing
      * @return HOTPResult a HOTP Result which can be truncated or output
      */
-    public static function generateByCounter( string $key, int $counter ): HOTPResult {
+    public static function generateByCounter(string $key, int $counter): HOTPResult
+    {
         // the counter value can be more than one byte long,
         // so we need to pack it down properly.
-        $cur_counter = [ 0, 0, 0, 0, 0, 0, 0, 0 ];
-        for ( $i = 7; $i >= 0; $i-- ) {
-            $cur_counter[$i] = pack( 'C*', $counter );
+        $curCounter = [ 0, 0, 0, 0, 0, 0, 0, 0 ];
+        for ($i = 7; $i >= 0; $i--) {
+            $curCounter[$i] = pack('C*', $counter);
             $counter = $counter >> 8;
         }
 
-        $bin_counter = implode( $cur_counter );
+        $binCounter = implode($curCounter);
 
         // Pad to 8 chars
-        if ( strlen( $bin_counter ) < 8 ) {
-            $bin_counter = str_repeat(
-                chr( 0 ),
-                8 - strlen( $bin_counter )
-            ) . $bin_counter;
+        if (strlen($binCounter) < 8) {
+            $binCounter = str_repeat(
+                chr(0),
+                8 - strlen($binCounter)
+            ) . $binCounter;
         }
 
         // HMAC
-        $hash = hash_hmac( 'sha1', $bin_counter, $key );
+        $hash = hash_hmac('sha1', $binCounter, $key);
 
-        return new HOTPResult( $hash );
+        return new HOTPResult($hash);
     }
 
     /**
@@ -50,16 +52,17 @@ class HOTP {
      * @param int|false $timestamp a timestamp to calculate for, defaults to time()
      * @return HOTPResult a HOTP Result which can be truncated or output
      */
-    public static function generateByTime( string $key, int $window, $timestamp = false ): HOTPResult {
-        if ( !$timestamp && $timestamp !== 0 ) {
+    public static function generateByTime(string $key, int $window, $timestamp = false): HOTPResult
+    {
+        if (!$timestamp && $timestamp !== 0) {
             // @codeCoverageIgnoreStart
             $timestamp = self::getTime();
             // @codeCoverageIgnoreEnd
         }
 
-        $counter = intval( $timestamp / $window) ;
+        $counter = intval($timestamp / $window) ;
 
-        return self::generateByCounter( $key, $counter );
+        return self::generateByCounter($key, $counter);
     }
 
     /**
@@ -73,20 +76,21 @@ class HOTP {
      * @param int|false $timestamp a timestamp to calculate for, defaults to time()
      * @return array of HOTPResult
      */
-    public static function generateByTimeWindow( string $key, int $window, int $min = -1, int $max = 1, $timestamp = false ): array {
-        if ( !$timestamp && $timestamp !== 0 ) {
+    public static function generateByTimeWindow(string $key, int $window, int $min = -1, int $max = 1, $timestamp = false): array
+    {
+        if (!$timestamp && $timestamp !== 0) {
             // @codeCoverageIgnoreStart
             $timestamp = self::getTime();
             // @codeCoverageIgnoreEnd
         }
 
-        $counter = intval( $timestamp / $window );
-        $window = range( $min, $max );
+        $counter = intval($timestamp / $window);
+        $window = range($min, $max);
 
         $out = [];
-        foreach ( $window as $value ) {
-            $shift_counter = $counter + $value;
-            $out[$shift_counter] = self::generateByCounter( $key, $shift_counter );
+        foreach ($window as $value) {
+            $shiftCounter = $counter + $value;
+            $out[$shiftCounter] = self::generateByCounter($key, $shiftCounter);
         }
 
         return $out;
@@ -99,7 +103,8 @@ class HOTP {
      * @return int the current time
      * @codeCoverageIgnore
      */
-    public static function getTime(): int {
+    public static function getTime(): int
+    {
         // PHP's time is always UTC
         return time();
     }
