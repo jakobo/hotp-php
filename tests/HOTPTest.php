@@ -10,11 +10,12 @@ use PHPUnit\Framework\TestCase;
  * @license BSD-3-Clause
  * @version 1.0
  */
-class HOTPTest extends TestCase {
-
+class HOTPTest extends TestCase
+{
     private const KEY = '12345678901234567890';
 
-    public function provideHOTP(): array {
+    public function provideHOTP(): array
+    {
         return [
             [
                 0, [
@@ -110,8 +111,9 @@ class HOTPTest extends TestCase {
      * @covers \jakobo\HOTP\HOTPResult::toHOTP
      * @dataProvider provideHOTP
      */
-    public function testHOTP( int $seed, array $result ): void {
-        $hotp = HOTP::generateByCounter( self::KEY, $seed );
+    public function testHOTP(int $seed, array $result): void
+    {
+        $hotp = HOTP::generateByCounter(self::KEY, $seed);
 
         $this->assertEquals(
             $result['HMAC'],
@@ -130,11 +132,12 @@ class HOTPTest extends TestCase {
 
         $this->assertEquals(
             $result['hotp'],
-            $hotp->toHOTP( 6 )
+            $hotp->toHOTP(6)
         );
     }
 
-    public function provideTOTP(): array {
+    public function provideTOTP(): array
+    {
         return [
             [ '59', '94287082' ],
             [ '1111111109', '07081804' ],
@@ -152,16 +155,18 @@ class HOTPTest extends TestCase {
      * @covers \jakobo\HOTP\HOTPResult::toHOTP
      * @dataProvider provideTOTP
      */
-    public function testTOTP( string $seed, string $result ): void {
-        $totp = HOTP::generateByTime( self::KEY, 30, $seed );
+    public function testTOTP(string $seed, string $result): void
+    {
+        $totp = HOTP::generateByTime(self::KEY, 30, $seed);
 
         $this->assertEquals(
             $result,
-            $totp->toHOTP( 8 )
+            $totp->toHOTP(8)
         );
     }
 
-    public function provideGenerateByTimeWindow(): array {
+    public function provideGenerateByTimeWindow(): array
+    {
         return [
                 [ '1111111111', [
                     "404137",
@@ -185,7 +190,8 @@ class HOTPTest extends TestCase {
      * @covers \jakobo\HOTP\HOTPResult::toHOTP
      * @dataProvider provideGenerateByTimeWindow
      */
-    public function testGenerateByTimeWindow( string $seed, array $result ): void {
+    public function testGenerateByTimeWindow(string $seed, array $result): void
+    {
         $results = HOTP::generateByTimeWindow(
             self::KEY,
             30,
@@ -195,8 +201,8 @@ class HOTPTest extends TestCase {
         );
 
         $actual = [];
-        foreach( $results as $res ) {
-            $actual[] = $res->toHOTP( 6 );
+        foreach ($results as $res) {
+            $actual[] = $res->toHOTP(6);
         }
 
         $this->assertEquals(
