@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace jakobo\HOTP;
 
 /**
@@ -83,7 +85,7 @@ class HOTPResult
      */
     public function toHOTP(int $length): string
     {
-        $str = str_pad($this->toDec(), $length, "0", STR_PAD_LEFT);
+        $str = str_pad((string)$this->toDec(), $length, "0", STR_PAD_LEFT);
         return substr($str, (-1 * $length));
     }
 }

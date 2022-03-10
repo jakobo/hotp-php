@@ -23,7 +23,7 @@ class HOTPTest extends TestCase
                     'hex'   => '4c93cf18',
                     'dec'   => '1284755224',
                     'hotp'  => '755224',
-                ]
+                ],
             ],
             [
                 1, [
@@ -31,7 +31,7 @@ class HOTPTest extends TestCase
                     'hex'   => '41397eea',
                     'dec'   => '1094287082',
                     'hotp'  => '287082',
-                ]
+                ],
             ],
             [
                 2, [
@@ -39,7 +39,7 @@ class HOTPTest extends TestCase
                     'hex'   => '82fef30',
                     'dec'   => '137359152',
                     'hotp'  => '359152',
-                ]
+                ],
             ],
             [
                 3, [
@@ -47,7 +47,7 @@ class HOTPTest extends TestCase
                     'hex'   => '66ef7655',
                     'dec'   => '1726969429',
                     'hotp'  => '969429',
-                ]
+                ],
             ],
             [
                 4, [
@@ -55,7 +55,7 @@ class HOTPTest extends TestCase
                     'hex'   => '61c5938a',
                     'dec'   => '1640338314',
                     'hotp'  => '338314',
-                ]
+                ],
             ],
             [
                 5, [
@@ -63,7 +63,7 @@ class HOTPTest extends TestCase
                     'hex'   => '33c083d4',
                     'dec'   => '868254676',
                     'hotp'  => '254676',
-                ]
+                ],
             ],
             [
                 6, [
@@ -71,7 +71,7 @@ class HOTPTest extends TestCase
                     'hex'   => '7256c032',
                     'dec'   => '1918287922',
                     'hotp'  => '287922',
-                ]
+                ],
             ],
             [
                 7, [
@@ -79,7 +79,7 @@ class HOTPTest extends TestCase
                     'hex'   => '4e5b397',
                     'dec'   => '82162583',
                     'hotp'  => '162583',
-                ]
+                ],
             ],
             [
                 8, [
@@ -87,7 +87,7 @@ class HOTPTest extends TestCase
                     'hex'   => '2823443f',
                     'dec'   => '673399871',
                     'hotp'  => '399871',
-                ]
+                ],
             ],
             [
                 9, [
@@ -95,7 +95,7 @@ class HOTPTest extends TestCase
                     'hex'   => '2679dc69',
                     'dec'   => '645520489',
                     'hotp'  => '520489',
-                ]
+                ],
             ],
         ];
     }
@@ -177,9 +177,9 @@ class HOTPTest extends TestCase
                     "266759",
                     "306183",
                     "466594",
-                    "754889"
-                ]
-            ]
+                    "754889",
+                ],
+            ],
         ];
     }
 

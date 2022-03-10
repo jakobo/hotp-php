@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * HOTP Example File
  */
@@ -106,24 +108,23 @@ echo "Count Method Value                                           Pass/Fail\n";
 echo "----------------------------------------------------------------------\n";
 
 // loop over all HOTP table results, and calculate the matching value
-foreach ( $table['HOTP'] as $seed => $results ) {
-    $hotp = HOTP::generateByCounter( $key, $seed );
+foreach ($table['HOTP'] as $seed => $results) {
+    $hotp = HOTP::generateByCounter($key, $seed);
     $first = true;
-    foreach ( $results as $type => $calc ) {
-        if ( $first ) {
-            echo str_pad( $seed, 4, ' ', STR_PAD_LEFT );
+    foreach ($results as $type => $calc) {
+        if ($first) {
+            echo str_pad($seed, 4, ' ', STR_PAD_LEFT);
             $first = false;
-        }
-        else {
+        } else {
             echo '    ';
         }
         echo '  ';
-        echo str_pad( $type, 5, ' ', STR_PAD_RIGHT);
+        echo str_pad($type, 5, ' ', STR_PAD_RIGHT);
         echo '  ';
-        echo str_pad( $calc, 47, ' ', STR_PAD_RIGHT);
+        echo str_pad($calc, 47, ' ', STR_PAD_RIGHT);
         echo '  ';
-        $method = 'to' . ( ucfirst( str_replace( 'HMAC', 'string', $type ) ) );
-        echo str_pad( ( $calc == $hotp->$method( 6 ) ) ? '[OK]' : '[FAIL]', 9, ' ', STR_PAD_LEFT );
+        $method = 'to' . (ucfirst(str_replace('HMAC', 'string', $type)));
+        echo str_pad(($calc == $hotp->$method(6)) ? '[OK]' : '[FAIL]', 9, ' ', STR_PAD_LEFT);
         echo "\n";
     }
 }
@@ -138,22 +139,21 @@ echo "Time (sec)   Value                                           Pass/Fail\n";
 echo "----------------------------------------------------------------------\n";
 
 // now echo over the TOTP table
-foreach ( $table['TOTP'] as $seed => $results ) {
-    $totp = HOTP::generateByTime( $key, 30, $seed );
+foreach ($table['TOTP'] as $seed => $results) {
+    $totp = HOTP::generateByTime($key, 30, $seed);
     $first = true;
-    foreach ( $results as $type => $calc ) {
-        if ( $first ) {
-            echo str_pad( $seed, 10, ' ', STR_PAD_LEFT );
+    foreach ($results as $type => $calc) {
+        if ($first) {
+            echo str_pad($seed, 10, ' ', STR_PAD_LEFT);
             $first = false;
-        }
-        else {
+        } else {
             echo '          ';
         }
         echo '   ';
-        echo str_pad( $calc, 47, ' ', STR_PAD_RIGHT );
+        echo str_pad($calc, 47, ' ', STR_PAD_RIGHT);
         echo '  ';
-        $method = 'to' . ( ucfirst( str_replace( 'totp', 'hotp', $type ) ) );
-        echo str_pad( ( $calc == $totp->$method( 8 ) ) ? '[OK]' : '[FAIL]', 9, ' ', STR_PAD_LEFT );
+        $method = 'to' . (ucfirst(str_replace('totp', 'hotp', $type)));
+        echo str_pad(($calc == $totp->$method(8)) ? '[OK]' : '[FAIL]', 9, ' ', STR_PAD_LEFT);
         echo "\n";
     }
 }

@@ -5,7 +5,8 @@ on:
   pull_request:
 
 jobs:
-  run:
+  run-ci:
+    name: PHP ${{ matrix.php-versions }} test
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -15,21 +16,16 @@ jobs:
           - "7.4"
           - "8.0"
           - "8.1"
-
-    name: PHP ${{ matrix.php-versions }} test
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-
-    - name: Setup PHP with XDebug
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: ${{ matrix.php-versions }}
-        coverage: xdebug
-        tools: composer
-
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress
-
-    - name: Run tests
-      run: composer test
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup PHP with XDebug
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          coverage: xdebug
+          tools: composer
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+      - name: Run tests
+        run: composer test
