@@ -34,12 +34,7 @@ class HOTP
         $binCounter = implode($curCounter);
 
         // Pad to 8 chars
-        if (strlen($binCounter) < 8) {
-            $binCounter = str_repeat(
-                chr(0),
-                8 - strlen($binCounter)
-            ) . $binCounter;
-        }
+        $binCounter = str_pad(implode("", $curCounter), 8, chr(0), STR_PAD_LEFT);
 
         // HMAC
         $hash = hash_hmac('sha1', $binCounter, $key);
